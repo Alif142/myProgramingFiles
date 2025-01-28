@@ -1,0 +1,10 @@
+##[pylyzer] failed /home/alif/myProgramingFiles/python/main_test.py 1737133937 1046
+.DUMMY = pyimport "main"
+.main = pyimport "main"
+.run_cases: global::List!(global::Tuple([Int, {True, False}]), 4)
+.submit_cases: global::List(Never, _: Nat)
+.test: (input1: Obj, expected_output: Obj) -> {False}
+.main: () -> NoneType
+.test_cases: global::List(Never, _: Nat)
+
+
