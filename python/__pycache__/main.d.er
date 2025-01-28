@@ -1,2 +1,0 @@
-##[pylyzer] succeed /home/alif/myProgramingFiles/python/main.py 1737133902 0
-.is_prime: (number: Obj) -> NoneType
