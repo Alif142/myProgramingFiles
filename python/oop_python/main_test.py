@@ -1,77 +1,100 @@
-
-from fight_soldiers import *
+from main import *
 
 run_cases = [
     (
-        {"damage": 10, "attacks_per_second": 3},
-        {"damage": 20, "attacks_per_second": 1},
-        "soldier 1 wins",
+        Archer("Robin", 2, 2),
+        Archer("Sheriff", 2, 2),
+        1,
+        [("Robin", 1, 1), ("Sheriff", 1, 1)],
+        None,
     ),
     (
-        {"damage": 50, "attacks_per_second": 1},
-        {"damage": 50, "attacks_per_second": 2},
-        "soldier 2 wins",
+        Archer("Friar Tuck", 1, 0),
+        Archer("Prince John", 1, 0),
+        1,
+        [None, None],
+        "Friar Tuck can't shoot",
+    ),
+    (
+        Archer("King Richard", 1, 1),
+        Archer("Prince John", 2, 1),
+        1,
+        [None, None],
+        "King Richard is dead",
     ),
 ]
 
 submit_cases = run_cases + [
     (
-        {"damage": 100, "attacks_per_second": 1},
-        {"damage": 1, "attacks_per_second": 200},
-        "soldier 2 wins",
+        Archer("Robin", 2, 2),
+        Archer("Sheriff", 3, 1),
+        2,
+        [None, None],
+        "Sheriff can't shoot",
     ),
     (
-        {"damage": 100, "attacks_per_second": 1},
-        {"damage": 50, "attacks_per_second": 2},
-        "both soldiers die",
+        Archer("Marian", 3, 2),
+        Archer("Little John", 3, 3),
+        2,
+        [("Marian", 1, 0), ("Little John", 1, 1)],
+        None,
     ),
     (
-        {"damage": 1, "attacks_per_second": 1},
-        {"damage": 2, "attacks_per_second": 1},
-        "soldier 2 wins",
+        Archer("Robin", 2, 2),
+        Archer("Prince John", 2, 1),
+        2,
+        [None, None],
+        "Prince John is dead",
     ),
     (
-        {"damage": 100, "attacks_per_second": 10},
-        {"damage": 100, "attacks_per_second": 10},
-        "both soldiers die",
-    ),
-    (
-        {"damage": 100, "attacks_per_second": 2},
-        {"damage": 50, "attacks_per_second": 4},
-        "both soldiers die",
+        Archer("Little John", 4, 3),
+        Archer("Sheriff", 3, 2),
+        3,
+        [None, None],
+        "Sheriff is dead",
     ),
 ]
 
 
-def test(input1, input2, expected_output):
+def test(archer_1, archer_2, rounds, expected_result, expected_err):
     print("---------------------------------")
-    print(f"fight_soldiers inputs: {input1}, {input2}")
-    print(f"expecting: {expected_output}")
+    archer_1.print_status()
+    archer_2.print_status()
+
     try:
-        result = fight_soldiers(input1, input2)
-        print(f"actual: {result}")
-        if result != expected_output:
+        for _ in range(rounds):
+            archer_1.shoot(archer_2)
+            archer_2.print_status()
+            archer_2.shoot(archer_1)
+            archer_1.print_status()
+        archer_2.print_status()
+
+        if expected_err:
+            print(f"\nExpected Exception: {expected_err}")
+            print("Actual: no exception raised")
             print("Fail")
             return False
-        actualSoliderOneDps = get_soldier_dps(input1)
-        actualSoliderTwoDps = get_soldier_dps(input2)
-        expectedSoliderOneDps = input1["damage"] * input1["attacks_per_second"]
-        expectedSoliderTwoDps = input2["damage"] * input2["attacks_per_second"]
-        if actualSoliderOneDps != expectedSoliderOneDps:
-            print(
-                f"get_soldier_dps({input1}) returned {actualSoliderOneDps}, but expected {expectedSoliderOneDps}"
-            )
+
+        status_1 = archer_1.get_status()
+        status_2 = archer_2.get_status()
+        print(f"\nExpected Result: {expected_result[0]}, {expected_result[1]}")
+        print(f"Actual Result: {status_1}, {status_2}")
+
+        if status_1 == expected_result[0] and status_2 == expected_result[1]:
+            print("Pass")
+            return True
+        else:
+            print("Fail")
             return False
-        if actualSoliderTwoDps != expectedSoliderTwoDps:
-            print(
-                f"get_soldier_dps({input2}) returned {actualSoliderTwoDps}, but expected {expectedSoliderTwoDps}"
-            )
-            return False
-        print("Pass")
-        return True
     except Exception as e:
-        print(f"Error: {e}")
-        return False
+        print(f"\nExpected Exception: {expected_err}")
+        print(f"Actual Exception: {str(e)}")
+        if str(e) == expected_err:
+            print("Pass")
+            return True
+        else:
+            print("Fail")
+            return False
 
 
 def main():
