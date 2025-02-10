@@ -45,14 +45,5 @@ int main() {
   }
   delete[] ptr;*/
 
-  int row, col;
-  cout << "Enter row colum:";
-  cin >> row;
-
-  int **ptr = new int *[row];
-
-  for (int i = 0; i < row; i++) {
-  }
-
 }
 
