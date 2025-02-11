@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1739179358 source:/home/alif/myProgramingFiles/learning_C_Concepts/Cpp_projects/myProject/dynArr.cpp
+	"dynArr.h"
+	<iostream>
+	<iterator>
+
+1739177209 /home/alif/myProgramingFiles/learning_C_Concepts/Cpp_projects/myProject/dynArr.h
+
+1739179148 source:/home/alif/myProgramingFiles/learning_C_Concepts/Cpp_projects/myProject/main.cpp
+	<iostream>
+	"dynArr.h"
+
