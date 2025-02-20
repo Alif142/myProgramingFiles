@@ -1,39 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 int main(void) {
-/*
+    for (int i=0;i<5;i++) {
+        for (int j=4;j>=i;j--) {
+            printf(" "); 
+        } 
 
-    int **array;
-  int row, col;
-  printf("Enter rows and columes:");
-  scanf("%d%d", &row, &col);
+        for (int j=0;j<=i;j++) {
+            printf("*"); 
+        } 
 
-  array = (int **)malloc(sizeof(int *) * row);
+        for (int j=1;j<=i;j++) {
+            printf("*"); 
+        } 
 
-  for (int i = 0; i < row; i++) {
-    array[i] = (int *)malloc(sizeof(int) * col);
-  }
+        printf("\n");
 
-  printf("Getting input:\n");
-  for (int i = 0; i < row; i++) {
-    for (int j = 0; j < col; j++) {
-      scanf("%d", &array[i][j]);
     }
-  }
 
-  printf("Getting output:\n");
-  for (int i = 0; i < row; i++) {
-    for (int j = 0; j < col; j++) {
-      printf("%d", array[i][j]);
+    for (int i=0;i<5;i++) {
+        for (int j=0;j<=i;j++) {
+            printf(" "); 
+        } 
+        for (int j=5;j>i;j--) {
+            printf("*"); 
+        }
+        for (int j=4;j>i;j--) {
+            printf("*"); 
+        }
+        printf("\n");
     }
-    printf("\n");
-  }
-}
-*/
 
-char b = 'b';
-    printf("%c\n",b-32);
-    int num = b-32;
-    printf("%d\n",num);
-    printf("%B",num);
 }
