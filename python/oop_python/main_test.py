@@ -1,62 +1,123 @@
-
 from main import *
 
 run_cases = [
-    ((0, 0, 5, 3), ["sprint_right"], (10, 0, None)),
+    ("shuffle_deck", 3, [("9", "Hearts"), ("Jack", "Clubs"), ("10", "Spades")]),
     (
-        (0, 0, 20, 3),
-        [
-            "sprint_left",
-            "sprint_left",
-            "sprint_left",
-        ],
-        (-120, 0, None),
+        "deal_card",
+        4,
+        [("King", "Spades"), ("Queen", "Spades"), ("Jack", "Spades"), ("10", "Spades")],
     ),
-    (
-        (1, 1, 3, 1),
-        ["sprint_down", "sprint_right"],
-        (1, -5, "not enough stamina to sprint"),
-    ),
+    ("deal_card", 3, [("King", "Spades"), ("Queen", "Spades"), ("Jack", "Spades")]),
 ]
-
 
 submit_cases = run_cases + [
-    ((3, 5, 5, 1), ["sprint_up"], (3, 15, None)),
-    ((2, 15, 6, 2), ["sprint_down"], (2, 3, None)),
+    ("shuffle_deck", 3, [("9", "Hearts"), ("Jack", "Clubs"), ("10", "Spades")]),
     (
-        (1, 1, 5, 2),
-        ["sprint_left", "sprint_up", "sprint_down"],
-        (-9, 11, "not enough stamina to sprint"),
+        "deal_card",
+        4,
+        [("King", "Spades"), ("Queen", "Spades"), ("Jack", "Spades"), ("10", "Spades")],
+    ),
+    ("deal_card", 3, [("King", "Spades"), ("Queen", "Spades"), ("Jack", "Spades")]),
+    ("shuffle_deck", 3, [("9", "Hearts"), ("Jack", "Clubs"), ("10", "Spades")]),
+    ("deal_card", 3, [("King", "Spades"), ("Queen", "Spades"), ("Jack", "Spades")]),
+    (
+        "deal_card",
+        53,
+        [
+            ("King", "Spades"),
+            ("Queen", "Spades"),
+            ("Jack", "Spades"),
+            ("10", "Spades"),
+            ("9", "Spades"),
+            ("8", "Spades"),
+            ("7", "Spades"),
+            ("6", "Spades"),
+            ("5", "Spades"),
+            ("4", "Spades"),
+            ("3", "Spades"),
+            ("2", "Spades"),
+            ("Ace", "Spades"),
+            ("King", "Clubs"),
+            ("Queen", "Clubs"),
+            ("Jack", "Clubs"),
+            ("10", "Clubs"),
+            ("9", "Clubs"),
+            ("8", "Clubs"),
+            ("7", "Clubs"),
+            ("6", "Clubs"),
+            ("5", "Clubs"),
+            ("4", "Clubs"),
+            ("3", "Clubs"),
+            ("2", "Clubs"),
+            ("Ace", "Clubs"),
+            ("King", "Diamonds"),
+            ("Queen", "Diamonds"),
+            ("Jack", "Diamonds"),
+            ("10", "Diamonds"),
+            ("9", "Diamonds"),
+            ("8", "Diamonds"),
+            ("7", "Diamonds"),
+            ("6", "Diamonds"),
+            ("5", "Diamonds"),
+            ("4", "Diamonds"),
+            ("3", "Diamonds"),
+            ("2", "Diamonds"),
+            ("Ace", "Diamonds"),
+            ("King", "Hearts"),
+            ("Queen", "Hearts"),
+            ("Jack", "Hearts"),
+            ("10", "Hearts"),
+            ("9", "Hearts"),
+            ("8", "Hearts"),
+            ("7", "Hearts"),
+            ("6", "Hearts"),
+            ("5", "Hearts"),
+            ("4", "Hearts"),
+            ("3", "Hearts"),
+            ("2", "Hearts"),
+            ("Ace", "Hearts"),
+            None,
+        ],
     ),
 ]
 
 
-def test(human_args, methods, expected_output):
+def test(action, num_cards, expected):
     print("---------------------------------")
-    print(f"Inputs:")
-    human = Human(*human_args)
-    print(f" * human({human_args})")
-    print(f" * methods: {methods}")
-    expected_x, expected_y, expected_error = expected_output
-    print(f"Expected: x: {expected_x}, y: {expected_y}, error: {expected_error}")
-    try:
-        for method in methods:
-            getattr(human, method)()
-        actual_x, actual_y = human.get_position()
-        actual_err = None
-    except Exception as e:
-        actual_x, actual_y = human.get_position()
-        actual_err = str(e)
-    print(f"Actual: x: {actual_x}, y: {actual_y}, error: {actual_err}")
-    if (
-        actual_x == expected_x
-        and actual_y == expected_y
-        and actual_err == expected_error
-    ):
+    print(f"Testing action: {action}, dealing {num_cards} cards")
+    print(f"Expected Output:")
+    print_cards(expected)
+    deck = DeckOfCards()
+    random.seed(1)
+    result = []
+
+    if action == "shuffle_deck":
+        print("Shuffling deck...")
+        deck.shuffle_deck()
+        print(f"dealing {num_cards} cards")
+        for _ in range(num_cards):
+            result.append(deck.deal_card())
+
+    elif action == "deal_card":
+        for _ in range(num_cards):
+            result.append(deck.deal_card())
+
+    print(f"Actual Output:")
+    print_cards(result)
+    if result == expected:
         print("Pass")
         return True
-    print("Fail")
-    return False
+    else:
+        print("Fail")
+        return False
+
+
+def print_cards(cards):
+    for card in cards:
+        if card is None:
+            print("* <None>")
+        else:
+            print(f"* {card[0]} of {card[1]}")
 
 
 def main():
@@ -80,3 +141,4 @@ if "__RUN__" in globals():
     test_cases = run_cases
 
 main()
+

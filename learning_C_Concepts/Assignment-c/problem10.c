@@ -1,17 +1,15 @@
+#include <math.h>
 #include <stdio.h>
-int main(){
-    int a = 8 , b = 2 , c = 4 , d= 5,e = 2 ;
-    float sum = 1;
+int main() {
+     double sum = 0.0;
     int n;
-    printf("Enter value of n:");
+    printf("Enter n:");
     scanf("%d",&n);
-    for(int i = 0;i<n;i++){
-        sum += ((float)a*a) +(float) b /(float) (c*e);
-        a = b*c;
-        b++;
-        c +=d;
-        d+=2;
-        e++;
+    for (int i = 1; i <= n; i++) {
+        double numerator = pow(i, 6) + i;
+        double denominator = pow(i * i, i);
+        double term = numerator / denominator;
+        sum += term;
     }
-    printf("%f", sum);
+    printf("%f",sum);
 }

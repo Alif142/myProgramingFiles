@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1727193899 source:d:\jobs\03 - lab instructor\codeblocks\cse225l\lab-05\task1\sortedtype.cpp
+	"sortedtype.h"
+
+1727193194 d:\jobs\03 - lab instructor\codeblocks\cse225l\lab-05\task1\sortedtype.h
+
+1727195396 source:d:\jobs\03 - lab instructor\codeblocks\cse225l\lab-05\task1\main.cpp
+	<iostream>
+	"sortedtype.cpp"
+	"timestamp.h"
+
+1727193899 d:\jobs\03 - lab instructor\codeblocks\cse225l\lab-05\task1\sortedtype.cpp
+	"sortedtype.h"
+
+1727195253 source:d:\jobs\03 - lab instructor\codeblocks\cse225l\lab-05\task1\timestamp.cpp
+	<iostream>
+	"timestamp.h"
+
+1727195242 d:\jobs\03 - lab instructor\codeblocks\cse225l\lab-05\task1\timestamp.h
+
