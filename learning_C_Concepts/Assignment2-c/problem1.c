@@ -1,13 +1,17 @@
 #include <stdio.h>
-void modify(int arr[],int k,int value){
-   arr[k] = value; 
+void modify(int arr[],int value, int size , int replace){
+    for (int i=0;i<size;i++) {
+        if (arr[i] == value) {
+            arr[i] = replace; 
+        } 
+    }
 }
 int main(){
     int arr[100];
     int size;
     printf("Enter size:");
     scanf("%d",&size);
-    printf("\nEnter array elements:");
+    printf("\nEnter array elements:\n");
     for (int i=0;i<size;i++) {
         printf("arr[%d]:",i);
         scanf("%d",&arr[i]); 
@@ -19,24 +23,12 @@ int main(){
         printf("%d ",arr[i]); 
     }
 
-    int k;
-    int value;
-
-    printf("\nEnter index:");
-    scanf("%d",&k);
-    printf("\nEnter value:");
+    int value,replace;
+    printf("\nEnter value you want to replace:");
     scanf("%d",&value);
-    modify(arr,k, value);
-    printf("\nNew array\n");
-    for (int i=0;i<size;i++) {
-        printf("%d ",arr[i]); 
-    }
-
-    printf("\nEnter index:");
-    scanf("%d",&k);
-    printf("\nEnter value:");
-    scanf("%d",&value);
-    modify(arr,k, value);
+    printf("\nEnter new value:");
+    scanf("%d",&replace);
+    modify(arr,value,size,replace);
     printf("\nNew array\n");
     for (int i=0;i<size;i++) {
         printf("%d ",arr[i]); 

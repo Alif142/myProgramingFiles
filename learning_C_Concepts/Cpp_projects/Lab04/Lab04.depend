@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1742848660 source:/home/alif/myProgramingFiles/learning_C_Concepts/Cpp_projects/Lab04/main.cpp
+	<iostream>
+	"unsortedType.cpp"
+	"unsortedType.h"
+
+1742845043 /home/alif/myProgramingFiles/learning_C_Concepts/Cpp_projects/Lab04/unsortedType.cpp
+	"unsortedType.h"
+	<iostream>
+	<iterator>
+	<stdio.h>
+
+1742843569 /home/alif/myProgramingFiles/learning_C_Concepts/Cpp_projects/Lab04/unsortedType.h
+
+1742847368 source:/home/alif/myProgramingFiles/learning_C_Concepts/Cpp_projects/Lab04/Student.cpp
+	"Student.h"
+
+1742847368 /home/alif/myProgramingFiles/learning_C_Concepts/Cpp_projects/Lab04/Student.h
+
+1742845043 source:/home/alif/myProgramingFiles/learning_C_Concepts/Cpp_projects/Lab04/unsortedType.cpp
+	"unsortedType.h"
+	<iostream>
+	<iterator>
+	<stdio.h>
+

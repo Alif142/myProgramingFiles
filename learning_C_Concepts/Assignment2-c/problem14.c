@@ -22,7 +22,7 @@ int main(){
     struct student slist[5];
     int size = 5;
     for (int i=0;i<size;i++) {
-        printf("\nFor student %d\n\n",i);
+        printf("\nFor student %d\n\n",i+1);
         printf("Enter id:");
         scanf("%d",&slist[i].ID);
         getchar();

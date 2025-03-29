@@ -1,9 +1,10 @@
 #include <stdio.h>
-void insert(int arr[],int size,int k , int value){
- for (int i = size;i>k;i--) {
+void insert(int arr[],int *size,int k , int value){
+ for (int i = *size;i>k;i--) {
         arr[i] = arr[i-1];
     }
     arr[k] = value;
+    (*size)++;
 }
 int main(){
     int arr[100];
@@ -29,7 +30,7 @@ int main(){
     printf("Enter value:");
     scanf("%d",&value);
 
-    insert(arr,size, k, value);
+    insert(arr,&size, k, value);
 
     printf("\nNew array\n");
     for (int i=0;i<size;i++) {
